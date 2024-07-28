@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://x2ds2ajgnpd4"]
+
+[ext_resource type="Texture2D" uid="uid://cjski6kxj4l8o" path="res://assets/monsters/weapons/bananacandle.png" id="1_fracr"]
+[ext_resource type="Script" path="res://BananaCandle.gd" id="2_jqesd"]
+
+[node name="BananaCandle" type="Sprite2D"]
+texture = ExtResource("1_fracr")
+script = ExtResource("2_jqesd")
+weight = 1
+durability = 2

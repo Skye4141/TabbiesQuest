@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnbalo8d400c1"]
+
+[ext_resource type="Script" path="res://combat/enemies/Puncher.gd" id="1_aq2x3"]
+[ext_resource type="Texture2D" uid="uid://cn38w445rur73" path="res://assets/enemies/gothic-hero-idle.png" id="2_bruiw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cafou"]
+atlas = ExtResource("2_bruiw")
+region = Rect2(0, 0, 38, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm2je"]
+atlas = ExtResource("2_bruiw")
+region = Rect2(38, 0, 38, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itiqw"]
+atlas = ExtResource("2_bruiw")
+region = Rect2(76, 0, 38, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8molf"]
+atlas = ExtResource("2_bruiw")
+region = Rect2(114, 0, 38, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sqdff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cafou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xm2je")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itiqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8molf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Puncher" type="Node2D"]
+z_index = 10
+script = ExtResource("1_aq2x3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+sprite_frames = SubResource("SpriteFrames_sqdff")
+animation = &"idle"
+autoplay = "idle"
+frame = 1
+frame_progress = 0.604377

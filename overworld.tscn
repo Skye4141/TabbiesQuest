@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl7wk43mchsge"]
+
+[ext_resource type="Texture2D" uid="uid://ctabldd3o2yus" path="res://assets/freesprite.jpg" id="1_ciibi"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_q813d"]
+distance = 12.6537
+
+[node name="Overworld" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(2.00464, -6.63837)
+shape = SubResource("WorldBoundaryShape2D_q813d")
+debug_color = Color(0.690196, 0.454902, 0.54902, 0.945098)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(178, 149)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_ciibi")
