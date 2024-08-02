@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dm7iekchrlnrw"]
+[gd_scene load_steps=6 format=3 uid="uid://dm7iekchrlnrw"]
 
 [ext_resource type="Texture2D" uid="uid://b3hai0o7nagw7" path="res://assets/tilesets/TX Tileset Grass.png" id="1_tewfm"]
 [ext_resource type="Script" path="res://combat/Lane.gd" id="1_xcdp5"]
-[ext_resource type="Texture2D" uid="uid://dh4l1b33sbrbj" path="res://assets/monsters/monster.png" id="3_e8iyk"]
-[ext_resource type="Script" path="res://combat/Monster.gd" id="4_ofl55"]
+[ext_resource type="PackedScene" uid="uid://dti8ti4v0pvgl" path="res://assets/monsters/Monster.tscn" id="3_q71jr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ilcgn"]
 texture = ExtResource("1_tewfm")
@@ -267,78 +266,14 @@ texture = ExtResource("1_tewfm")
 [sub_resource type="TileSet" id="TileSet_0uwib"]
 sources/0 = SubResource("TileSetAtlasSource_ilcgn")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_844vc"]
-atlas = ExtResource("3_e8iyk")
-region = Rect2(0, 0, 64, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_31unt"]
-atlas = ExtResource("3_e8iyk")
-region = Rect2(64, 0, 64, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fk7ec"]
-atlas = ExtResource("3_e8iyk")
-region = Rect2(128, 0, 64, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_etjpt"]
-atlas = ExtResource("3_e8iyk")
-region = Rect2(192, 0, 64, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xa5w6"]
-atlas = ExtResource("3_e8iyk")
-region = Rect2(256, 0, 64, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n8ak7"]
-atlas = ExtResource("3_e8iyk")
-region = Rect2(320, 0, 64, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4pifd"]
-atlas = ExtResource("3_e8iyk")
-region = Rect2(384, 0, 64, 80)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_6ha1d"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_844vc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_31unt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fk7ec")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_etjpt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xa5w6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n8ak7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4pifd")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[node name="Lane" type="Node2D"]
+[node name="Lane" type="Node2D" node_paths=PackedStringArray("monster")]
 scale = Vector2(3, 3)
 script = ExtResource("1_xcdp5")
+monster = NodePath("EnemyLane/Monster")
 
 [node name="EnemyLane" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_0uwib")
 format = 2
 layer_0/tile_data = PackedInt32Array(1, 0, 8, 2, 0, 8, 3, 0, 8, 4, 0, 8, 5, 0, 8, 6, 0, 8, 7, 0, 8, 8, 0, 8, 9, 0, 8, 65537, 0, 8, 65538, 0, 8, 65539, 0, 8, 65545, 0, 8, 65542, 0, 8, 65541, 0, 8, 65540, 0, 8, 65543, 0, 8, 65544, 0, 8, 327681, 0, 8, 327682, 0, 8, 327683, 0, 8, 327684, 0, 8, 327685, 0, 8, 327686, 0, 8, 327687, 0, 8, 327688, 0, 8, 327689, 0, 8, 393217, 0, 8, 393218, 0, 8, 393219, 0, 8, 393220, 0, 8, 393221, 0, 8, 393222, 0, 8, 393223, 0, 8, 393224, 0, 8, 393225, 0, 8, 655361, 0, 8, 655362, 0, 8, 655363, 0, 8, 655364, 0, 8, 655365, 0, 8, 655366, 0, 8, 655367, 0, 8, 655368, 0, 8, 655369, 0, 8, 720905, 0, 8, 720904, 0, 8, 720903, 0, 8, 720902, 0, 8, 720901, 0, 8, 720900, 0, 8, 720899, 0, 8, 720898, 0, 8, 720897, 0, 8, 131073, 0, 4, 196609, 0, 4, 262145, 0, 4, 458753, 0, 4, 524289, 0, 4, 589825, 0, 4, 917513, 0, 4, 917512, 0, 4, 917511, 0, 4, 917510, 0, 4, 917509, 0, 4, 917508, 0, 4, 917507, 0, 4, 917506, 0, 4, 917505, 0, 4, 851969, 0, 4, 786433, 0, 4, 131074, 0, 4, 196610, 655360, 6, 262146, 0, 4, 458754, 0, 4, 524290, 524288, 5, 589826, 0, 4, 786434, 0, 4, 851970, 524288, 5, 131075, 0, 4, 196611, 0, 4, 262147, 0, 4, 458755, 0, 4, 524291, 0, 4, 589827, 0, 4, 786435, 0, 4, 851971, 0, 4, 131076, 0, 4, 196612, 0, 4, 262148, 0, 4, 458756, 0, 4, 524292, 0, 4, 589828, 0, 4, 786436, 0, 4, 851972, 0, 4, 131077, 0, 4, 262149, 0, 4, 458757, 0, 4, 524293, 524288, 5, 589829, 0, 4, 786437, 0, 4, 851973, 524288, 5, 131078, 0, 4, 196614, 0, 4, 262150, 0, 4, 458758, 0, 4, 524294, 0, 4, 589830, 0, 4, 786438, 0, 4, 851974, 0, 4, 131079, 0, 4, 196615, 0, 4, 262151, 0, 4, 458759, 0, 4, 524295, 0, 4, 589831, 0, 4, 786439, 0, 4, 851975, 0, 4, 131080, 0, 4, 196616, 655360, 6, 262152, 0, 4, 458760, 0, 4, 524296, 524288, 5, 589832, 0, 4, 786440, 0, 4, 851976, 524288, 5, 131081, 0, 4, 262153, 0, 4, 458761, 0, 4, 524297, 0, 4, 589833, 0, 4, 786441, 0, 4, 851977, 0, 4, 196617, 0, 0, 196613, 524288, 5, 0, 917504, 10, 65536, 917504, 10, 131072, 917504, 10, 196608, 917504, 10, 262144, 917504, 10, 327680, 917504, 10, 393216, 917504, 10, 458752, 917504, 10, 524288, 917504, 10, 589824, 917504, 10, 655360, 917504, 10, 720896, 917504, 10, 786432, 917504, 10, 851968, 917504, 10, 917504, 917504, 10, 10, 917504, 10, 65546, 917504, 10, 131082, 917504, 10, 196618, 917504, 10, 262154, 917504, 10, 327690, 917504, 10, 393226, 917504, 10, 458762, 917504, 10, 524298, 917504, 10, 589834, 917504, 10, 655370, 917504, 10, 720906, 917504, 10, 786442, 917504, 10, 851978, 917504, 10, 917514, 917504, 10, 983040, 524288, 7, 983041, 524288, 7, 983042, 524288, 7, 983043, 524288, 7, 983044, 524288, 7, 983045, 524288, 7, 983046, 524288, 7, 983047, 524288, 7, 983048, 524288, 7, 983049, 524288, 7, 983050, 524288, 7, 1048586, 524288, 7, 1114122, 524288, 7, 1179658, 524288, 7, 1245194, 524288, 7, 1310730, 524288, 7, 1376266, 524288, 7, 1376265, 524288, 7, 1376264, 524288, 7, 1376263, 524288, 7, 1376262, 524288, 7, 1376261, 524288, 7, 1376260, 524288, 7, 1376259, 524288, 7, 1376258, 524288, 7, 1376257, 524288, 7, 1376256, 524288, 7, 1310720, 524288, 7, 1245184, 524288, 7, 1179648, 524288, 7, 1114112, 524288, 7, 1048576, 524288, 7, 1048577, 524288, 7, 1114113, 524288, 7, 1179649, 524288, 7, 1245185, 524288, 7, 1310721, 524288, 7, 1048578, 524288, 7, 1114114, 524288, 7, 1179650, 524288, 7, 1245186, 524288, 7, 1310722, 524288, 7, 1048579, 524288, 7, 1114115, 524288, 7, 1179651, 524288, 7, 1245187, 524288, 7, 1310723, 524288, 7, 1048580, 524288, 7, 1114116, 524288, 7, 1179652, 524288, 7, 1245188, 524288, 7, 1310724, 524288, 7, 1048581, 524288, 7, 1114117, 524288, 7, 1179653, 524288, 7, 1245189, 524288, 7, 1310725, 524288, 7, 1048582, 524288, 7, 1114118, 524288, 7, 1179654, 524288, 7, 1245190, 524288, 7, 1310726, 524288, 7, 1048583, 524288, 7, 1114119, 524288, 7, 1179655, 524288, 7, 1245191, 524288, 7, 1310727, 524288, 7, 1048584, 524288, 7, 1114120, 524288, 7, 1179656, 524288, 7, 1245192, 524288, 7, 1310728, 524288, 7, 1048585, 524288, 7, 1114121, 524288, 7, 1179657, 524288, 7, 1245193, 524288, 7, 1310729, 524288, 7, 1441792, 131072, 12, 1441793, 131072, 12, 1441794, 131072, 12, 1441795, 131072, 12, 1441796, 131072, 12, 1441797, 131072, 12, 1441798, 131072, 12, 1441799, 131072, 12, 1441800, 131072, 12, 1441801, 131072, 12, 1441802, 131072, 12)
 
-[node name="Monster" type="AnimatedSprite2D" parent="."]
-texture_filter = 3
-position = Vector2(100, 300)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_6ha1d")
-autoplay = "default"
-frame = 1
-frame_progress = 0.31813
-script = ExtResource("4_ofl55")
+[node name="Monster" parent="EnemyLane" instance=ExtResource("3_q71jr")]

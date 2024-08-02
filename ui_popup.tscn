@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://e1jbw6d7qukd"]
+
+[ext_resource type="Material" uid="uid://l00axdc53kds" path="res://assets/materials/blur.tres" id="1_oyj6m"]
+[ext_resource type="Script" path="res://ui_popup.gd" id="1_wpy44"]
+[ext_resource type="Texture2D" uid="uid://3b02hitaugi2" path="res://assets/images/modal.png" id="2_sr3bs"]
+
+[node name="UIPopup" type="ColorRect" node_paths=PackedStringArray("header", "body")]
+z_index = 100
+material = ExtResource("1_oyj6m")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.243137, 1, 0.364706)
+script = ExtResource("1_wpy44")
+header = NodePath("Sprite2D/Header")
+body = NodePath("Sprite2D/Body")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(1.6, 4)
+texture = ExtResource("2_sr3bs")
+centered = false
+region_rect = Rect2(1, 0, 100, 0)
+
+[node name="Header" type="Label" parent="Sprite2D"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 8.0
+offset_bottom = 54.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Body" type="Label" parent="Sprite2D"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -71.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Body
+Text"
+horizontal_alignment = 1
+autowrap_mode = 2

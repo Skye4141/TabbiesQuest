@@ -5,24 +5,18 @@
 
 [node name="Combat" type="Node2D" node_paths=PackedStringArray("leftLane", "rightLane")]
 script = ExtResource("1_dp844")
-leftLane = NodePath("Foreground/LeftLane")
-rightLane = NodePath("Foreground/RightLane")
+leftLane = NodePath("LeftLane")
+rightLane = NodePath("RightLane")
 
-[node name="Background" type="CanvasLayer" parent="."]
-
-[node name="Foreground" type="CanvasLayer" parent="."]
-layer = 2
-follow_viewport_enabled = true
-
-[node name="LeftLane" parent="Foreground" instance=ExtResource("2_ftjd6")]
+[node name="LeftLane" parent="." node_paths=PackedStringArray("combat") instance=ExtResource("2_ftjd6")]
 position = Vector2(350, 0)
+combat = NodePath("..")
 
-[node name="RightLane" parent="Foreground" instance=ExtResource("2_ftjd6")]
+[node name="RightLane" parent="." node_paths=PackedStringArray("combat") instance=ExtResource("2_ftjd6")]
 position = Vector2(1050, 0)
+combat = NodePath("..")
 
-[node name="CombatUI" type="CanvasLayer" parent="."]
-
-[node name="CombatControls" type="Control" parent="CombatUI"]
+[node name="CombatControls" type="Control" parent="."]
 z_index = 20
 layout_mode = 3
 anchors_preset = 0
@@ -30,7 +24,7 @@ offset_left = 1578.0
 offset_right = 1920.0
 offset_bottom = 1079.0
 
-[node name="Button" type="Button" parent="CombatUI/CombatControls"]
+[node name="Button" type="Button" parent="CombatControls"]
 custom_minimum_size = Vector2(200, 75)
 layout_mode = 1
 anchors_preset = 8
@@ -47,10 +41,11 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "End Turn"
 
-[node name="DeckHand" type="Control" parent="CombatUI"]
+[node name="DeckHand" type="Control" parent="CombatControls"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 348.0
+offset_left = -1578.0
+offset_right = -1230.0
 offset_bottom = 1079.0
 
-[connection signal="pressed" from="CombatUI/CombatControls/Button" to="." method="_on_end_turn"]
+[connection signal="pressed" from="CombatControls/Button" to="." method="_on_end_turn"]

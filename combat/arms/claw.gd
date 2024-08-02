@@ -1,6 +1,8 @@
 class_name Claw extends MonsterArm
 
-
+func attachArmEvents():
+	scale = Vector2(0.1, 0.1)
+	position.x = -5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -1,6 +1,8 @@
 class_name Lane extends Node2D
 
+@export var combat: Combat
 @export var enemies: Array[Enemy]
+@export var monster: Monster
 enum LaneGroup {STAGING, MIDDLE, ATTACK}
 enum LanePosition {LEFT, MIDDLE, RIGHT}
 static func getLaneCoords(laneGroup: LaneGroup, lanePos: LanePosition) -> Vector2i:
@@ -25,20 +27,22 @@ const availableEnemyScenes = {
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	spawnEnemy()
+	monster.lane = self
 	#new_enemy.position = map_to_local(Vector2i(1,1))
 #	new_enemy.scale = Vector2i(100, 100)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 	
 func getLanePosVectorFromEnemy(enemy: Enemy) -> Vector2i:
-	return getLaneCoords(enemy.laneGroup, enemy.lanePos)
+	return Lane.getLaneCoords(enemy.laneGroup, enemy.lanePos)
 	
 func endTurn():
 	moveEnemies()
+	doCombat()
 	spawnEnemy()
 	
 func spawnEnemy():
@@ -51,6 +55,7 @@ func spawnEnemy():
 		getEnemyLaneObj().add_child(newEnemy)
 		moveEnemy(newEnemy)
 		enemies.append(newEnemy)
+		newEnemy.lane = self
 
 func getEnemyLaneObj() -> TileMap:
 	return get_child(0) as TileMap
@@ -69,7 +74,7 @@ func moveEnemyForward(enemy: Enemy) -> void:
 	if newLaneGroup > 2:
 		newLaneGroup = 2
 	if not findEnemyByLane(newLaneGroup, enemy.lanePos):
-		enemy.laneGroup = newLaneGroup
+		enemy.laneGroup = newLaneGroup as Lane.LaneGroup
 		moveEnemy(enemy)
 	
 func moveEnemies():
@@ -94,6 +99,11 @@ func getAllMeleeEnemies() -> Array[Enemy]:
 			
 func doCombat():
 	var combatEnemies = getAllMeleeEnemies()
+	if combatEnemies.size() == 0:
+		return
+	for enemy: Enemy in combatEnemies:
+		monster.takeDamage(enemy.getDamage())
+	monster.dealDamage(combatEnemies)
 	
 	
 	

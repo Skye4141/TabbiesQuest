@@ -1,14 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://shma5de1ld47"]
 
+[ext_resource type="Script" path="res://game.gd" id="1_62to7"]
 [ext_resource type="PackedScene" uid="uid://dl7wk43mchsge" path="res://overworld.tscn" id="1_gi1oh"]
 [ext_resource type="PackedScene" uid="uid://d36hslgoichtt" path="res://main_menu.tscn" id="1_rjh53"]
-[ext_resource type="Script" path="res://start button.gd" id="2_ye6x5"]
-[ext_resource type="PackedScene" uid="uid://ph815fdgag27" path="res://combat/combat.tscn" id="4_7i6in"]
+[ext_resource type="PackedScene" uid="uid://e1jbw6d7qukd" path="res://ui_popup.tscn" id="6_4r6tx"]
 
 [node name="Game" type="Node2D"]
-
-[node name="Combat" parent="." instance=ExtResource("4_7i6in")]
-unique_name_in_owner = true
+script = ExtResource("1_62to7")
 
 [node name="Overworld" parent="." instance=ExtResource("1_gi1oh")]
 unique_name_in_owner = true
@@ -54,7 +52,6 @@ offset_top = -40.0
 offset_right = 50.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("2_ye6x5")
 
 [node name="Label" type="Label" parent="MainMenu/StartButton"]
 layout_mode = 1
@@ -64,10 +61,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
-text = "Start"
+text = "Start Combat Debug"
 horizontal_alignment = 1
+
+[node name="DefeatScreen" parent="." instance=ExtResource("6_4r6tx")]
+unique_name_in_owner = true
+visible = false
+headerText = "You Lose"
+bodyText = "You Big Fat Loser"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[connection signal="pressed" from="MainMenu/StartButton" to="MainMenu/StartButton" method="_on_start_pressed"]
+[connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_debug_start_combat_pressed"]

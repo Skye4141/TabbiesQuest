@@ -1,5 +1,6 @@
-extends Node2D
+class_name Combat extends Node2D
 
+@export var game: Game
 @export var leftLane: Lane
 @export var rightLane: Lane
 var lanes: Array[Lane]
@@ -18,12 +19,14 @@ func _ready():
 		if canvas:
 			canvas.follow_viewport_enabled = true
 	lanes.append(leftLane)
+	leftLane.combat = self
 	lanes.append(rightLane)
+	rightLane.combat = self
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _on_end_turn():

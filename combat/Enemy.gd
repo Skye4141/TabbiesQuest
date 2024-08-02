@@ -6,6 +6,8 @@ class_name Enemy extends Node2D
 @export var baseSpeed: int = 1
 @export var baseHealth: int = 1
 @export var baseDamage: int = 1
+@export var lane: Lane
+@export var healthLabel: Label
 var onFire: bool = false
 
 #current stats
@@ -22,9 +24,10 @@ func _ready():
 	speed = baseSpeed
 	health = baseHealth
 	damage = baseDamage
+	healthLabel.text = str(baseHealth)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func endOfTurnEffects():
@@ -36,13 +39,15 @@ func getDamage():
 	
 func takeDamage(dmg: int):
 	health -= dmg
+	healthLabel.text = str(health)
 	if health <= 0:
 		die()
 		
 
 		
 func die():
+	lane.enemies.erase(self)
 	queue_free()
 	
 func setStartingLanePos():
-	lanePos = randi() % 3
+	lanePos = (randi() % 3) as Lane.LanePosition
