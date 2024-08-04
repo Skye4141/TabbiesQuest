@@ -16,7 +16,8 @@ func startCombat():
 func gameOver():
 	get_node("%DefeatScreen").show()
 	await get_tree().create_timer(5.0).timeout
-	combat.queue_free()
+	if (combat):
+		combat.queue_free()
 	get_node("%DefeatScreen").hide()
 	get_node("%MainMenu").show()
 	

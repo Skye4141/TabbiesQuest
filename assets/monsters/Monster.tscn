@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dti8ti4v0pvgl"]
+[gd_scene load_steps=15 format=3 uid="uid://dti8ti4v0pvgl"]
 
 [ext_resource type="Texture2D" uid="uid://dh4l1b33sbrbj" path="res://assets/monsters/monster.png" id="1_itgmb"]
 [ext_resource type="Script" path="res://assets/monsters/Monster.gd" id="2_nk341"]
 [ext_resource type="Texture2D" uid="uid://c7sjyrl1xe8rw" path="res://assets/monsters/heart.png" id="3_f23k1"]
 [ext_resource type="Texture2D" uid="uid://dxwyy6dg58twl" path="res://assets/monsters/shield.png" id="4_01e65"]
 [ext_resource type="PackedScene" uid="uid://c03bur4iypjdj" path="res://drop_zone.tscn" id="5_ce857"]
+[ext_resource type="Script" path="res://MonsterArmPlacement.gd" id="6_y4l8l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_844vc"]
 atlas = ExtResource("1_itgmb")
@@ -63,46 +64,64 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Monster" type="AnimatedSprite2D" node_paths=PackedStringArray("healthLabel", "armorLabel", "leftArm0Placement")]
-texture_filter = 3
-position = Vector2(88.6667, 281.333)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_6ha1d")
-autoplay = "default"
-frame = 1
-frame_progress = 0.31813
+[node name="Monster" type="Node2D" node_paths=PackedStringArray("healthLabel", "armorLabel", "leftArm0Placement")]
 script = ExtResource("2_nk341")
 healthLabel = NodePath("HealthLabel")
 armorLabel = NodePath("ArmorLabel")
 leftArm0Placement = NodePath("LeftArm0Placement")
 
+[node name="MonsterSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_6ha1d")
+autoplay = "default"
+frame = 1
+frame_progress = 0.31813
+
 [node name="HealthSprite" type="Sprite2D" parent="."]
-position = Vector2(-20.1667, 27.6667)
-scale = Vector2(0.330729, 0.3)
+position = Vector2(-71, 142)
 texture = ExtResource("3_f23k1")
 
 [node name="HealthLabel" type="Label" parent="."]
-offset_left = -37.8333
-offset_top = 14.8333
-offset_right = -0.833332
-offset_bottom = 37.8333
+offset_left = -122.0
+offset_top = 115.0
+offset_right = -21.0
+offset_bottom = 157.0
+theme_override_font_sizes/font_size = 30
 text = "8"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ArmorSprite" type="Sprite2D" parent="."]
-position = Vector2(14.3333, 27.6667)
-scale = Vector2(0.365625, 0.320052)
+position = Vector2(59, 142)
 texture = ExtResource("4_01e65")
 
 [node name="ArmorLabel" type="Label" parent="."]
-offset_left = -3.16667
-offset_top = 15.1667
-offset_right = 33.8333
-offset_bottom = 38.1667
+offset_left = 24.0
+offset_top = 115.0
+offset_right = 96.0
+offset_bottom = 157.0
+theme_override_font_sizes/font_size = 30
 text = "8"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LeftArm0Placement" parent="." instance=ExtResource("5_ce857")]
-position = Vector2(-17.3333, -11)
+[node name="LeftArm0Placement" parent="." node_paths=PackedStringArray("_parent") instance=ExtResource("5_ce857")]
+position = Vector2(-69, -67)
+script = ExtResource("6_y4l8l")
+_parent = NodePath("..")
+
+[node name="LeftArm1Placement" parent="." node_paths=PackedStringArray("_parent") instance=ExtResource("5_ce857")]
+position = Vector2(-75, -7)
+script = ExtResource("6_y4l8l")
+_parent = NodePath("..")
+
+[node name="RightArm0Placement" parent="." node_paths=PackedStringArray("_parent") instance=ExtResource("5_ce857")]
+position = Vector2(53, -69)
+script = ExtResource("6_y4l8l")
+_parent = NodePath("..")
+
+[node name="RightArm1Placement" parent="." node_paths=PackedStringArray("_parent") instance=ExtResource("5_ce857")]
+position = Vector2(70, -9)
+script = ExtResource("6_y4l8l")
+_parent = NodePath("..")

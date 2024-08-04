@@ -17,6 +17,11 @@ var monster: Monster
 func attachArmEvents():
 	pass
 
+func horizontalFlip():
+	for child in get_children():
+		if child is Sprite2D:
+			child.set_flip_h(true)
+
 func destroyArm():
 	var ownerSide: Array[MonsterArm] = (monster.LeftArms if side == Monster.MonsterSide.LEFT else monster.RightArms)
 	ownerSide.erase(self)

@@ -43,28 +43,31 @@ animations = [{
 z_index = 10
 script = ExtResource("1_aq2x3")
 baseHealth = 3
-healthLabel = NodePath("AnimatedSprite2D/HealthLabel")
+healthLabel = NodePath("HealthLabel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_sqdff")
 animation = &"idle"
 autoplay = "idle"
 frame = 1
 frame_progress = 0.604377
 
-[node name="HealthLabel" type="Label" parent="AnimatedSprite2D"]
+[node name="HealthLabel" type="Label" parent="."]
 z_index = 1
-offset_left = -9.0
-offset_top = 23.0
-offset_right = 10.0
-offset_bottom = 46.0
+offset_left = -30.0
+offset_top = 68.0
+offset_right = 31.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 25
 text = "88"
 horizontal_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D"]
-offset_left = -11.0
-offset_top = 27.0
-offset_right = 11.0
-offset_bottom = 42.0
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -30.0
+offset_top = 73.0
+offset_right = -4.0
+offset_bottom = 88.0
+scale = Vector2(2.34684, 1.76949)
 color = Color(0, 0, 0, 1)

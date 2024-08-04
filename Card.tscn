@@ -1,0 +1,152 @@
+[gd_scene load_steps=8 format=3 uid="uid://bayoiv4rdhxdn"]
+
+[ext_resource type="Texture2D" uid="uid://b70678vujcful" path="res://assets/images/card.png" id="1_04uoy"]
+[ext_resource type="Script" path="res://Card.gd" id="1_dr121"]
+[ext_resource type="Texture2D" uid="uid://coatl41nkmgbt" path="res://assets/images/coin.png" id="2_e8fgk"]
+[ext_resource type="Texture2D" uid="uid://bqot3i02lma5a" path="res://assets/images/broken.png" id="3_8mnmc"]
+[ext_resource type="Texture2D" uid="uid://bqm54tgdosa5p" path="res://assets/monsters/arms/steampunkarmsmall.png" id="4_vtbjt"]
+[ext_resource type="Script" path="res://CardPhysics.gd" id="6_sxd8d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfm2l"]
+size = Vector2(444, 410)
+
+[node name="Card" type="Node2D"]
+z_index = 30
+script = ExtResource("1_dr121")
+
+[node name="CardBorder" type="Sprite2D" parent="."]
+texture = ExtResource("1_04uoy")
+
+[node name="PictureBackground" type="ColorRect" parent="."]
+offset_left = -162.0
+offset_top = -112.0
+offset_right = 162.0
+offset_bottom = 114.0
+color = Color(0.941176, 0.933333, 0.905882, 1)
+
+[node name="DescriptionDivider" type="ColorRect" parent="."]
+offset_left = -162.0
+offset_right = 162.0
+offset_bottom = 3.0
+color = Color(0.211765, 0.164706, 0.0352941, 1)
+
+[node name="Cost Background" type="Sprite2D" parent="."]
+position = Vector2(-191, -189)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_e8fgk")
+
+[node name="Title" type="Label" parent="."]
+offset_left = -217.0
+offset_top = -206.0
+offset_right = -165.0
+offset_bottom = -172.0
+theme_override_colors/font_color = Color(0.0823529, 0.0666667, 0.0117647, 1)
+theme_override_font_sizes/font_size = 24
+text = "88"
+horizontal_alignment = 1
+
+[node name="DurabilityBackground" type="Sprite2D" parent="."]
+position = Vector2(191, -183)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_8mnmc")
+
+[node name="DurabilityBackground2" type="ColorRect" parent="."]
+offset_left = 169.0
+offset_top = -195.0
+offset_right = 206.0
+offset_bottom = -171.0
+color = Color(0.65098, 0.596078, 0.439216, 0.588235)
+
+[node name="Durability" type="Label" parent="DurabilityBackground2"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 44.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.0823529, 0.0666667, 0.0117647, 1)
+theme_override_font_sizes/font_size = 24
+text = "77"
+horizontal_alignment = 1
+
+[node name="TitleBackground" type="ColorRect" parent="."]
+offset_left = -174.0
+offset_top = -169.0
+offset_right = 165.0
+offset_bottom = -145.0
+color = Color(0.65098, 0.596078, 0.439216, 0.588235)
+
+[node name="Title" type="Label" parent="TitleBackground"]
+offset_left = -17.0
+offset_top = -7.0
+offset_right = 364.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0.0823529, 0.0666667, 0.0117647, 1)
+theme_override_font_sizes/font_size = 24
+text = "Really Long Name Claw Arm"
+horizontal_alignment = 1
+
+[node name="DescriptionBackground" type="ColorRect" parent="."]
+offset_left = -162.0
+offset_top = 3.0
+offset_right = 162.0
+offset_bottom = 114.0
+color = Color(0.827451, 0.8, 0.721569, 1)
+
+[node name="Description" type="Label" parent="."]
+offset_left = -162.0
+offset_top = 3.0
+offset_right = 162.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(0.0823529, 0.0666667, 0.0117647, 1)
+theme_override_font_sizes/font_size = 16
+text = "Sample Body Text. This is a really long sample body text so I can see the text wrap correctly. I like watching text wrap it is my favorite activity"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CardPicture" type="Sprite2D" parent="."]
+position = Vector2(-16, -75)
+rotation = 0.785398
+texture = ExtResource("4_vtbjt")
+
+[node name="TypeBackground" type="ColorRect" parent="."]
+offset_left = -81.0
+offset_top = 144.0
+offset_right = 80.0
+offset_bottom = 168.0
+color = Color(0.65098, 0.596078, 0.439216, 0.588235)
+
+[node name="Type" type="Label" parent="TypeBackground"]
+offset_left = -25.0
+offset_top = -5.0
+offset_right = 188.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.0823529, 0.0666667, 0.0117647, 1)
+theme_override_font_sizes/font_size = 20
+text = "Type - Arm"
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("card")]
+script = ExtResource("6_sxd8d")
+card = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_dfm2l")
+
+[node name="Button" type="Button" parent="Area2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -223.0
+offset_top = -201.0
+offset_right = 222.0
+offset_bottom = 211.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_card_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_card_body_exited"]
+[connection signal="button_down" from="Area2D/Button" to="Area2D" method="_on_mouse_down"]
+[connection signal="button_up" from="Area2D/Button" to="Area2D" method="_on_mouse_up"]
+[connection signal="mouse_entered" from="Area2D/Button" to="Area2D" method="_on_card_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D/Button" to="Area2D" method="_on_card_mouse_exited"]

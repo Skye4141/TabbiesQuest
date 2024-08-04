@@ -1,6 +1,7 @@
 class_name Util extends Node2D
 
 static var _game: Game
+static var isCardDragging: bool = false
 
 static func getRandomDictEntry(dict: Dictionary):
 	var size = dict.size()

@@ -1,4 +1,4 @@
-class_name Monster extends AnimatedSprite2D
+class_name Monster extends Node2D
 
 enum MonsterSide {LEFT, RIGHT}
 @export var LeftArms: Array[MonsterArm] = [null, null, null, null]
@@ -64,6 +64,8 @@ func attachArm(armScene: PackedScene, side: MonsterSide, index: int):
 	newArm.side = side
 	newArm.index = index
 	armGroup[index] = newArm
+	if side == MonsterSide.RIGHT:
+		newArm.horizontalFlip()
 	newArm.attachArmEvents()
 	
 

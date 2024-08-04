@@ -7,14 +7,14 @@ enum LaneGroup {STAGING, MIDDLE, ATTACK}
 enum LanePosition {LEFT, MIDDLE, RIGHT}
 static func getLaneCoords(laneGroup: LaneGroup, lanePos: LanePosition) -> Vector2i:
 	var laneMap = {
-		LaneGroup.STAGING: 2,
-		LaneGroup.MIDDLE: 7,
-		LaneGroup.ATTACK: 12
+		LaneGroup.STAGING: 8,
+		LaneGroup.MIDDLE: 19,
+		LaneGroup.ATTACK: 30
 	}
 	var LanePosMap = {
-		LanePosition.LEFT: 2,
-		LanePosition.MIDDLE: 5,
-		LanePosition.RIGHT: 8
+		LanePosition.LEFT: 6,
+		LanePosition.MIDDLE: 15,
+		LanePosition.RIGHT: 24
 	}
 	var y: int = laneMap[laneGroup]
 	var x: int = LanePosMap[lanePos]
