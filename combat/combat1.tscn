@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ph815fdgag27"]
+[gd_scene load_steps=6 format=3 uid="uid://ph815fdgag27"]
 
 [ext_resource type="Script" path="res://combat/combat.gd" id="1_dp844"]
 [ext_resource type="PackedScene" uid="uid://dm7iekchrlnrw" path="res://combat/lane.tscn" id="2_ftjd6"]
 [ext_resource type="Script" path="res://combat/DeckHand.gd" id="2_gm4gv"]
+[ext_resource type="Script" path="res://IntField.gd" id="3_f8hxe"]
+[ext_resource type="Texture2D" uid="uid://ci5xntqwh6eef" path="res://assets/images/magic_dust.png" id="4_xsuym"]
 
 [node name="Combat" type="Node2D" node_paths=PackedStringArray("leftLane", "rightLane")]
 z_index = 1
@@ -10,13 +12,40 @@ script = ExtResource("1_dp844")
 leftLane = NodePath("LeftLane")
 rightLane = NodePath("RightLane")
 
-[node name="DeckHand" type="Control" parent="."]
+[node name="DeckHand" type="Control" parent="." node_paths=PackedStringArray("Mana")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 350.0
 offset_bottom = 1080.0
 mouse_filter = 1
 script = ExtResource("2_gm4gv")
+Mana = NodePath("Mana")
+
+[node name="Mana" type="Node2D" parent="DeckHand"]
+position = Vector2(147, 988)
+script = ExtResource("3_f8hxe")
+
+[node name="Sprite2D" type="Sprite2D" parent="DeckHand/Mana"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_xsuym")
+
+[node name="Label" type="Label" parent="DeckHand/Mana"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -25.0
+offset_right = 50.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "88"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LeftLane" parent="." node_paths=PackedStringArray("combat") instance=ExtResource("2_ftjd6")]
 position = Vector2(350, 0)

@@ -27,7 +27,7 @@ const availableEnemyScenes = {
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	spawnEnemy()
-	monster.lane = self
+	#monster.lane = self
 	#new_enemy.position = map_to_local(Vector2i(1,1))
 #	new_enemy.scale = Vector2i(100, 100)
 	pass # Replace with function body.
@@ -36,7 +36,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
-	
+
+func instantiateMonster(monScene: PackedScene):
+	var mon: Monster = monScene.instantiate()
+	mon.position = Vector2(250, 780)
+	get_child(0).add_child(mon)
+	mon.lane = self
+	monster = mon
+
 func getLanePosVectorFromEnemy(enemy: Enemy) -> Vector2i:
 	return Lane.getLaneCoords(enemy.laneGroup, enemy.lanePos)
 	

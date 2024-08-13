@@ -13,14 +13,19 @@ class_name MonsterArm extends Node2D
 @export var weaponPlacement: StaticBody2D
 @export var weapon: MonsterWeapon
 var monster: Monster
+var temp: int = randi()
 
 func attachArmEvents():
 	pass
 
-func horizontalFlip():
-	for child in get_children():
+func horizontalFlip(obj = self):
+	print(self.name, temp, self.global_position)
+	for child in obj.get_children():
 		if child is Sprite2D:
 			child.set_flip_h(true)
+			child.rotation *= -1
+			if child != self:
+				horizontalFlip(child)
 
 func destroyArm():
 	var ownerSide: Array[MonsterArm] = (monster.LeftArms if side == Monster.MonsterSide.LEFT else monster.RightArms)

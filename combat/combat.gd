@@ -5,6 +5,9 @@ class_name Combat extends Node2D
 @export var rightLane: Lane
 var lanes: Array[Lane]
 
+var leftMonster: PackedScene = preload("res://assets/monsters/bigbro.tscn")
+var rightMonster: PackedScene = preload("res://assets/monsters/lilbro.tscn")
+
 func hideCombat():
 	for child in get_children():
 		child.hide()
@@ -22,6 +25,8 @@ func _ready():
 	leftLane.combat = self
 	lanes.append(rightLane)
 	rightLane.combat = self
+	leftLane.instantiateMonster(leftMonster)
+	rightLane.instantiateMonster(rightMonster)
 	
 
 

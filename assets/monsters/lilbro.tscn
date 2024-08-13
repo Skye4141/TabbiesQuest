@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://bb6o3wroanxnv"]
+
+[ext_resource type="Script" path="res://assets/monsters/Monster.gd" id="1_feqpj"]
+[ext_resource type="Texture2D" uid="uid://73stayj2t7dq" path="res://assets/images/lilbro.png" id="2_8ql1i"]
+[ext_resource type="Script" path="res://IntField.gd" id="3_xvvcp"]
+[ext_resource type="Texture2D" uid="uid://c7sjyrl1xe8rw" path="res://assets/monsters/heart.png" id="3_ysxav"]
+[ext_resource type="Texture2D" uid="uid://dxwyy6dg58twl" path="res://assets/monsters/shield.png" id="4_e4jxg"]
+[ext_resource type="PackedScene" uid="uid://c03bur4iypjdj" path="res://drop_zone.tscn" id="5_n3xq3"]
+[ext_resource type="Script" path="res://MonsterArmPlacement.gd" id="6_msunu"]
+
+[node name="Monster" type="Node2D" node_paths=PackedStringArray("leftArm0Placement", "leftArm1Placement", "rightArm0Placement", "rightArm1Placement", "Health", "Armor")]
+script = ExtResource("1_feqpj")
+leftArm0Placement = NodePath("LeftArm0Placement")
+leftArm1Placement = NodePath("LeftArm1Placement")
+rightArm0Placement = NodePath("RightArm0Placement")
+rightArm1Placement = NodePath("RightArm1Placement")
+Health = NodePath("Health")
+Armor = NodePath("Armor")
+
+[node name="MonsterSprite" type="Sprite2D" parent="."]
+texture_filter = 3
+scale = Vector2(6, 6)
+texture = ExtResource("2_8ql1i")
+
+[node name="Health" type="Node2D" parent="."]
+position = Vector2(-90, 228)
+script = ExtResource("3_xvvcp")
+
+[node name="HealthSprite" type="Sprite2D" parent="Health"]
+position = Vector2(0, 3)
+texture = ExtResource("3_ysxav")
+
+[node name="HealthLabel" type="Label" parent="Health"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -21.0
+offset_right = 50.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Armor" type="Node2D" parent="."]
+position = Vector2(85, 229)
+script = ExtResource("3_xvvcp")
+
+[node name="ArmorSprite" type="Sprite2D" parent="Armor"]
+position = Vector2(0, 2)
+texture = ExtResource("4_e4jxg")
+
+[node name="ArmorLabel" type="Label" parent="Armor"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -21.0
+offset_right = 36.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftArm0Placement" parent="." node_paths=PackedStringArray("monster") instance=ExtResource("5_n3xq3")]
+position = Vector2(-56, -91)
+script = ExtResource("6_msunu")
+side = 0
+index = 0
+monster = NodePath("..")
+
+[node name="LeftArm1Placement" parent="." node_paths=PackedStringArray("monster") instance=ExtResource("5_n3xq3")]
+position = Vector2(-56, -11)
+script = ExtResource("6_msunu")
+side = 0
+index = 0
+monster = NodePath("..")
+
+[node name="RightArm0Placement" parent="." node_paths=PackedStringArray("monster") instance=ExtResource("5_n3xq3")]
+position = Vector2(60, -91)
+script = ExtResource("6_msunu")
+side = 0
+index = 0
+monster = NodePath("..")
+
+[node name="RightArm1Placement" parent="." node_paths=PackedStringArray("monster") instance=ExtResource("5_n3xq3")]
+position = Vector2(60, -16)
+script = ExtResource("6_msunu")
+side = 0
+index = 0
+monster = NodePath("..")

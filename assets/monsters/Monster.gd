@@ -67,37 +67,19 @@ func attachArm(armScene: PackedScene, side: MonsterSide, index: int):
 	if side == MonsterSide.RIGHT:
 		newArm.horizontalFlip()
 	newArm.attachArmEvents()
-	
 
 #current stats
-var _health: int
-var _armor: int
+@export var Health: IntField
+@export var Armor: IntField
 
 func takeDamage(amount: int):
-	_health -= amount
-	healthLabel.text = str(_health)
-	if _health <= 0:
+	Health.Change(amount * -1)
+	if Health.Get() <= 0:
 		Util.game().gameOver()
 	
 func heal(amount: int):
-	_health += amount
-	if amount > baseHealth:
-		_health = baseHealth
-	healthLabel.text = str(_health)
-		
-func setHealth(amount: int):
-	_health = amount
-	healthLabel.text = str(_health)
-	
-func getHealth() -> int:
-	return _health
+	Health.change(amount)
 
-func setArmor(amount: int):
-	_armor = amount
-	armorLabel.text = str(_armor)
-	
-func getArmor() -> int:
-	return _armor
 	
 func endOfTurnEffects():
 	pass
@@ -113,9 +95,11 @@ func dealDamage(enemies: Array[Enemy]):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	setHealth(baseHealth)
-	setArmor(baseArmor)
+	Health.Set(baseHealth)
+	Health.maxValue = baseHealth
+	Armor.Set(baseArmor)
 	attachArm(testArmScene, MonsterSide.LEFT, 0)
+	#attachArm(testArmScene, MonsterSide.RIGHT, 0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

@@ -1,11 +1,13 @@
 class_name DeckHand extends Control
 
 @export var startingHandSize: int = 3
+@export var manaPerTurn: int = 3
+@export var Mana: IntField
 var Deck: Array[Card]
 var Hand: Array[Card] = [null, null, null, null, null, null, null, null]
 var Discard: Array[Card]
 var InPlay: Array[Card]
-var Grave: Array[Card]
+var ScrapYard: Array[Card]
 
 var center: float = 150 #x coord for putting cards
 const yCoords = [200, 400, 600, 800, 600, 700, 800, 900]
@@ -15,8 +17,9 @@ func loadDeck():
 	#TODO: replace packed scenes with scenes from game deck collection, or duplicate
 	for i in range(15):
 		var newCard: Card = testCardScene.instantiate()
-		add_child(newCard)
+		newCard.deckHand = self
 		newCard.scale = Vector2(.5, .5)
+		add_child(newCard)
 		newCard.hide()
 		Deck.append(newCard)
 		Deck.shuffle()
@@ -73,7 +76,7 @@ func drawCard() -> int:
 	#TODO: play animation hand full
 	return -1
 
-func drawCards(amount: int):
+func drawCards(amount: int = startingHandSize):
 	for i in range(amount):
 		drawCard()
 
@@ -83,11 +86,15 @@ func reshuffleDiscard():
 	Deck.shuffle()
 	#TODO: play reshuffle animation and/or sound
 
+func startTurn():
+	drawCards()
+	Mana.Set(manaPerTurn)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	center = position.x + (size.x / 2)
 	loadDeck()
-	drawCards(startingHandSize)
+	startTurn()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

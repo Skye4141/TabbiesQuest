@@ -1,6 +1,6 @@
 class_name Game extends Node2D
 
-var combatScene: PackedScene = preload("res://combat/combat.tscn")
+var combatScene: PackedScene = preload("res://combat/combat1.tscn")
 var combat: Combat
 
 func _on_debug_start_combat_pressed():

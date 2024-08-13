@@ -1,21 +1,72 @@
-[gd_scene load_steps=4 format=3 uid="uid://blsb6coit1528"]
+[gd_scene load_steps=5 format=3 uid="uid://blsb6coit1528"]
 
 [ext_resource type="Script" path="res://combat/arms/claw.gd" id="1_5thn8"]
 [ext_resource type="Texture2D" uid="uid://bqm54tgdosa5p" path="res://assets/monsters/arms/steampunkarmsmall.png" id="2_4ykr3"]
-[ext_resource type="PackedScene" uid="uid://c6cmhkgbaf2im" path="res://combat/arm_animation.tscn" id="3_6xk4w"]
+
+[sub_resource type="Animation" id="Animation_lg1ma"]
+resource_name = "wave"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("SpriteContainer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.436332, 1.13446, 0.436332]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteContainer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [25.0],
+"method": &"rotate"
+}, {
+"args": [25.0],
+"method": &"rotate"
+}, {
+"args": [-25.0],
+"method": &"rotate"
+}, {
+"args": [-25.0],
+"method": &"rotate"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s00gn"]
+_data = {
+"wave": SubResource("Animation_lg1ma")
+}
 
 [node name="Claw" type="Node2D"]
 script = ExtResource("1_5thn8")
 damage = 2
 grabbiness = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 20)
-rotation = 0.610865
-texture = ExtResource("2_4ykr3")
+[node name="SpriteContainer" type="Sprite2D" parent="."]
+rotation = 0.436332
 
-[node name="ArmAnimation" parent="Sprite2D" instance=ExtResource("3_6xk4w")]
+[node name="Sprite2D" type="Sprite2D" parent="SpriteContainer"]
+position = Vector2(1.95097, 19.7026)
+rotation = 0.436332
+texture = ExtResource("2_4ykr3")
 
 [node name="WeaponContainer" type="Node2D" parent="."]
 z_index = -1
 position = Vector2(-90, 35)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s00gn")
+}
+autoplay = "wave"
